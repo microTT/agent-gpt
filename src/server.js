@@ -1,7 +1,8 @@
 // 导入所需的库
 const http = require('http');
 const url = require('url');
-const port = 3000;
+
+const env = require('../env.json');
 
 // 创建服务器
 const server = http.createServer((req, res) => {
@@ -24,6 +25,6 @@ const server = http.createServer((req, res) => {
 });
 
 // 监听指定的端口
-server.listen(port, () => {
-  console.log(`服务器已启动，正在监听端口：${port}`);
+server.listen(env.PORT, () => {
+  console.log(`服务器已启动，正在监听端口：${env.PORT}`);
 });
