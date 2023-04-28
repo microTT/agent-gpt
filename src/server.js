@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
     res.end('你好，欢迎来到主页！');
   } else if (requestUrl.pathname === '/chat') {
     res.writeHead(200);
-    res.end('关于我们的页面');
+    res.end({ result: 'chat' });
   } else {
     res.writeHead(404);
     res.end('对不起，找不到你请求的页面。');
