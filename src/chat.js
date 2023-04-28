@@ -20,5 +20,5 @@ exports.send = async function send (input) {
     messages
   })
 
-  return completion.data.choices[0].message
+  return completion.data.choices[0].message.content
 }
