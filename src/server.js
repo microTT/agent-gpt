@@ -2,6 +2,7 @@
 const http = require('http')
 const url = require('url')
 
+const chat = require('./chat')
 const env = require('../env.json')
 
 // 创建服务器
@@ -16,15 +17,19 @@ const server = http.createServer((req, res) => {
     res.writeHead(200)
     res.end('你好，欢迎来到主页！')
   } else if (requestUrl.pathname === '/chat') {
-    res.writeHead(200)
-    res.end(
-      JSON.stringify({
-        success: true,
-        errorCode: 200,
-        errorMsg: '',
-        fields: { text: 'chat' }
-      })
-    )
+    const message = requestUrl.query['sys.用户输入']
+
+    chat.send(message).then((text) => {
+      res.writeHead(200)
+      res.end(
+        JSON.stringify({
+          success: true,
+          errorCode: 200,
+          errorMsg: '',
+          fields: { text }
+        })
+      )
+    })
   } else {
     res.writeHead(404)
     res.end('对不起，找不到你请求的页面。')
