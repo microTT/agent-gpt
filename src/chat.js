@@ -6,7 +6,7 @@ const configuration = new Configuration({
 })
 
 exports.send = async function send (input) {
-  const message = input.substring(2)
+  const message = input.substring(2).trim()
 
   console.log(message)
 
