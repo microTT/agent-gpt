@@ -17,12 +17,14 @@ const server = http.createServer((req, res) => {
     res.end('你好，欢迎来到主页！')
   } else if (requestUrl.pathname === '/chat') {
     res.writeHead(200)
-    res.end({
-      success: true,
-      errorCode: 200,
-      errorMsg: '',
-      fields: { text: 'chat' }
-    })
+    res.end(
+      JSON.stringify({
+        success: true,
+        errorCode: 200,
+        errorMsg: '',
+        fields: { text: 'chat' }
+      })
+    )
   } else {
     res.writeHead(404)
     res.end('对不起，找不到你请求的页面。')
