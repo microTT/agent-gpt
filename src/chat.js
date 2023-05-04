@@ -6,7 +6,7 @@ const configuration = new Configuration({
 })
 
 exports.send = async function send (input) {
-  const message = input.substring(2).trim()
+  const message = input?.substring(2)?.trim()
 
   console.log(message)
 
@@ -19,6 +19,8 @@ exports.send = async function send (input) {
     model: 'gpt-3.5-turbo',
     messages
   })
+
+  console.log(JSON.stringify(completion.data.choices[0].message))
 
   return completion.data.choices[0].message.content
 }
