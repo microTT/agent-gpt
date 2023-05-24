@@ -12,7 +12,11 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 
-app.post('/openai', async (req, res) => {
+app.get('/status', async (req, res) => {
+  res.json({ result: 'ok' })
+})
+
+app.post('/chat-completion', async (req, res) => {
   try {
     const completion = await openai.createChatCompletion(req.body)
     res.json(completion.data)
