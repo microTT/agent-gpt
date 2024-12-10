@@ -1,9 +1,11 @@
 const express = require('express');
 const { Configuration, OpenAIApi } = require('openai');
-const env = require('../env.json');
 const winston = require('winston');
 const cluster = require('cluster');
 const os = require('os');
+
+// 读取环境变量
+const apiKey = process.env.OPENAI_API_KEY;
 
 // 配置日志工具
 const logger = winston.createLogger({
@@ -36,7 +38,7 @@ if (cluster.isMaster) {
   app.use(express.json());
 
   const configuration = new Configuration({
-    apiKey: env.OPENAI_API_KEY,
+    apiKey,
   });
   const openai = new OpenAIApi(configuration);
 
